@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1042660295711",
+    "project_id": "female-in-action-74823",
+    "storage_bucket": "female-in-action-74823.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1042660295711:android:2cca429a277b39bbac812a",
+        "android_client_info": {
+          "package_name": "com.aqibaja.female_in_action"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1042660295711-q4e7mg8nn4m2fu71n6rdbbo5crebm297.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMtw1_W3PAWPuWODbURXfE_5t3uCA8aUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1042660295711-q4e7mg8nn4m2fu71n6rdbbo5crebm297.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
