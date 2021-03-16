@@ -69,7 +69,7 @@ class _AddScreenState extends State<AddScreen> {
           'username': result['username'],
           'desc': desc,
           'imageUrl': value,
-          'uavatarUrl': widget.uavatarUrl
+          'uavatarUrl': result['uavatarUrl']
         }).then((result) {
           print("sukses!!!");
           EasyLoading.dismiss();
