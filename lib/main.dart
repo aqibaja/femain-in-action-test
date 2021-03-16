@@ -19,10 +19,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Female in Action",
       home: AppSignIn(),
-      theme: ThemeData(
-        brightness: Brightness.light,
-        /* light theme settings */
-      ),
+      theme: ThemeData(brightness: Brightness.light, primaryColor: Colors.pink
+          /* light theme settings */
+          ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         /* dark theme settings */

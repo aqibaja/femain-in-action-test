@@ -17,7 +17,7 @@ class _FeedScreenState extends State<FeedScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink,
+        //backgroundColor: Colors.pink,
         title: Text(
           "Instagram",
           style: GoogleFonts.pacifico(fontSize: 29),
@@ -152,23 +152,13 @@ class _FeedScreenState extends State<FeedScreen> {
                 ),
               ],
             ),
+            Text(uName,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
             Container(
-              height: 100,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(uName,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                  Expanded(
-                    child: Text(
-                      desc,
-                      maxLines: 4,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  )
-                ],
-              ),
+              child: Text(desc,
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17)),
             ),
           ],
         ),

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +66,7 @@ class _AddScreenState extends State<AddScreen> {
       users.doc(widget.uid).get().then((DocumentSnapshot result) {
         feed.add({
           'uid': widget.uid,
-          'uname': result['nama'],
+          'username': result['username'],
           'desc': desc,
           'imageUrl': value,
           'uavatarUrl': widget.uavatarUrl
@@ -97,78 +98,96 @@ class _AddScreenState extends State<AddScreen> {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     CollectionReference feed = firestore.collection('feed');
 
-    return Container(
-      child: Form(
-        key: _formKey,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView(
-            children: [
-              image(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                      onPressed: () => getImageGalery(),
-                      child: Text(
-                        "Galery",
-                        style: TextStyle(fontSize: 25),
-                      )),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  ElevatedButton(
-                      onPressed: () => getImageCamera(),
-                      child: Text(
-                        "Camera",
-                        style: TextStyle(fontSize: 25),
-                      )),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Maaf data tidak boleh kosong';
-                  } else if (_image == null) {
-                    return 'Maaf gambar belum dipilih';
-                  }
-                  return null;
-                },
-                controller: _descControler,
-                maxLines: 5,
-                decoration: InputDecoration(
-                    labelText: 'Description',
-                    alignLabelWithHint: true,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20))),
-              ),
-              SizedBox(
-                height: 5,
-              ),
-              RaisedButton(
-                  color: Colors.blueGrey,
-                  child: Text(
-                    'Add',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      print(_descControler.text);
-                      EasyLoading.show(status: 'loading...');
-                      uploadFirebase(_descControler.text).then((value) {
-                        _descControler.text = "";
-                        _image = null;
-                        EasyLoading.showSuccess("Sukses!");
-                        setState(() {});
-                      });
+    return Scaffold(
+      appBar: AppBar(
+        // backgroundColor: Colors.pink,
+        title: Text(
+          "New Post",
+          style: GoogleFonts.lato(fontSize: 29),
+        ),
+        actions: [
+          Icon(
+            Icons.save_alt,
+            size: 35,
+          ),
+          SizedBox(
+            width: 10,
+          ),
+        ],
+      ),
+      body: Container(
+        child: Form(
+          key: _formKey,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView(
+              children: [
+                image(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                        onPressed: () => getImageGalery(),
+                        child: Text(
+                          "Galery",
+                          style: TextStyle(fontSize: 25),
+                        )),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    ElevatedButton(
+                        onPressed: () => getImageCamera(),
+                        child: Text(
+                          "Camera",
+                          style: TextStyle(fontSize: 25),
+                        )),
+                  ],
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextFormField(
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Maaf data tidak boleh kosong';
+                    } else if (_image == null) {
+                      return 'Maaf gambar belum dipilih';
                     }
-                  })
-            ],
+                    return null;
+                  },
+                  controller: _descControler,
+                  maxLines: 5,
+                  decoration: InputDecoration(
+                      labelText: 'Description',
+                      alignLabelWithHint: true,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20))),
+                ),
+                SizedBox(
+                  height: 5,
+                ),
+                RaisedButton(
+                    color: Colors.blueGrey,
+                    child: Text(
+                      'Save',
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    onPressed: () {
+                      if (_formKey.currentState.validate()) {
+                        print(_descControler.text);
+                        EasyLoading.show(status: 'loading...');
+                        uploadFirebase(_descControler.text).then((value) {
+                          _descControler.text = "";
+                          _image = null;
+                          EasyLoading.showSuccess("Sukses!");
+                          setState(() {});
+                        });
+                      }
+                    })
+              ],
+            ),
           ),
         ),
       ),
@@ -180,6 +199,8 @@ class _AddScreenState extends State<AddScreen> {
         ? Container(
             height: 300,
             width: double.infinity,
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.black, width: 1)),
             child: Image.asset(
               "assets/images/no-image.png",
               fit: BoxFit.fill,
