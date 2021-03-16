@@ -9,7 +9,8 @@ class MyHomePage extends StatefulWidget {
   final String uid;
   final String uavatarUrl;
   final String username;
-  MyHomePage({this.uid, this.uavatarUrl, this.username});
+  final String name;
+  MyHomePage({this.uid, this.uavatarUrl, this.username, this.name});
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -50,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ProfileScreen(
               uid: widget.uid,
               username: widget.username,
+              name: widget.name,
             ),
           ],
         ),

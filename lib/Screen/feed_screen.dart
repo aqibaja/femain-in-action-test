@@ -12,7 +12,7 @@ FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 class _FeedScreenState extends State<FeedScreen> {
   CollectionReference feed = firestore.collection("feed");
-
+  CollectionReference users = firestore.collection("users");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,7 +97,7 @@ class _FeedScreenState extends State<FeedScreen> {
                   width: 10,
                 ),
                 Text(
-                  uName,
+                  uName ?? "Anonimous",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ],

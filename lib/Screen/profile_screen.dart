@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:female_in_action/Screen/edit_profile.dart';
+import 'package:female_in_action/Screen/login_screen.dart';
 import 'package:female_in_action/models/model_feed.dart';
 import 'package:female_in_action/models/model_user.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,8 @@ import 'package:google_fonts/google_fonts.dart';
 class ProfileScreen extends StatefulWidget {
   final String uid;
   final String username;
-  ProfileScreen({this.uid, this.username});
+  final String name;
+  ProfileScreen({this.uid, this.username, this.name});
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
 }
@@ -163,7 +165,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               Expanded(
                   child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () => Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => AppSignIn()),
+                    (route) => false),
                 style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all<Color>(Colors.red)),

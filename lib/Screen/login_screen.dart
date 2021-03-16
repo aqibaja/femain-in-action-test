@@ -177,7 +177,7 @@ class _AppSignInState extends State<AppSignIn> {
                                         .get()
                                         .then((DocumentSnapshot result) {
                                       EasyLoading.dismiss();
-                                      Navigator.pushReplacement(
+                                      Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => MyHomePage(
@@ -186,7 +186,8 @@ class _AppSignInState extends State<AppSignIn> {
                                                         result['uavatarUrl'],
                                                     username:
                                                         result['username'],
-                                                  )));
+                                                  )),
+                                          (route) => false);
                                     }).catchError((error) {
                                       var errorCode = error.code;
                                       var errorMessage = error.message;

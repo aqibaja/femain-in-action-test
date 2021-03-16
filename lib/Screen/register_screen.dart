@@ -309,7 +309,7 @@ class _AppSingUpState extends State<AppSingUp> {
                                       'uavatarUrl': null,
                                       'bio': null,
                                       'website': null,
-                                      'name': _textEditingFullName.text,
+                                      'nama': _textEditingFullName.text,
                                     }).then((result) {
                                       print("sukses!!!");
                                       EasyLoading.dismiss();
