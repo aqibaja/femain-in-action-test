@@ -308,6 +308,7 @@ class _AppSingUpState extends State<AppSingUp> {
                                       'password': _textEditingPassword2.text,
                                       'uavatarUrl': null,
                                       'bio': null,
+                                      'website': null,
                                       'name': _textEditingFullName.text,
                                     }).then((result) {
                                       print("sukses!!!");

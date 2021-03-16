@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:female_in_action/Screen/edit_profile.dart';
 import 'package:female_in_action/models/model_feed.dart';
 import 'package:female_in_action/models/model_user.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       snapshot.data.data()['id'],
                       snapshot.data.data()['email'],
                       snapshot.data.data()['bio'],
+                      snapshot.data.data()['website'],
                     );
                   } else {
                     EasyLoading.show(status: 'loading...');
@@ -70,14 +72,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  Widget listView(
-    String name,
-    String username,
-    String uAvatarUrl,
-    String id,
-    String email,
-    String bio,
-  ) {
+  Widget listView(String name, String username, String uAvatarUrl, String id,
+      String email, String bio, String website) {
     return ListView(
       children: [
         Padding(
@@ -121,6 +117,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
         ),
+        (website != null)
+            ? Padding(
+                padding: EdgeInsets.only(left: 13, right: 13),
+                child: Text(
+                  website,
+                  style: TextStyle(
+                      fontSize: 23,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey),
+                ),
+              )
+            : Container(),
         Padding(
           padding: EdgeInsets.only(left: 13, right: 13),
           child: Text(
@@ -134,7 +142,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
             children: [
               Expanded(
                   child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => EditScreen(
+                              name: name,
+                              bio: bio,
+                              username: username,
+                              uAvatarUrl: uAvatarUrl,
+                              uid: id,
+                              website: website,
+                            ))),
                 child: Text("Edit Profile", style: TextStyle(fontSize: 19)),
                 style: ButtonStyle(
                     backgroundColor:
@@ -166,7 +184,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               Tab(
                 icon: Icon(
-                  Icons.person_pin_outlined,
+                  Icons.assignment_ind_rounded,
                 ),
               )
             ], // list of tabs
